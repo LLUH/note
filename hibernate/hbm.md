@@ -38,8 +38,9 @@ auto-import属性默认让我们在查询语言中可以使用非全限定名的
 ＜!-- property元素为类声明了一个持久化的，JavaBean风格的属性--＞ 
 
 ＜property name="name" type="string"＞ 
-＜column name="name" length="64" not-null="true" /＞ 
-＜/property＞ ＜property name="sex" not-null="true" update="false"/＞ 
+    ＜column name="name" length="64" not-null="true" /＞ 
+＜/property＞ 
+＜property name="sex" not-null="true" update="false"/＞ 
 
 ＜!--多对一映射关系--＞
 
@@ -48,12 +49,18 @@ auto-import属性默认让我们在查询语言中可以使用非全限定名的
 ＜!--设置关联关系--＞ 
 
 ＜set name="friends" inverse="true" order-by="id"＞ 
-＜key column="friend_id"/＞ 
-
-＜!—一对多映射--＞ 
-
-＜one-to-many class="Cat"/＞ 
+    ＜key column="friend_id"/＞ 
+    ＜!--一对多映射--＞ 
+    ＜one-to-many class="Cat"/＞ 
 ＜/set＞ 
+
+＜!--多对多映射--＞ 
+
+<bag name="orderdetails" cascade="save-update">
+      <key column="ordersuuid" ></key>
+      <one-to-many class="cn.itcast.erp.entity.Orderdetail"/>
+</bag>
+         
 ＜/class＞ 
 ＜/hibernate-mapping＞
 ```
